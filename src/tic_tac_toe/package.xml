@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<package format="2">
+    <name>tic_tac_toe</name>
+    <version>1.0.0</version>
+    <description>
+        LLM-driven Robotic Arm Tic-Tac-Toe Game System
+
+        使用Qwen视觉模型和LLM驱动机械臂玩井字棋游戏
+
+        组成模块:
+        - tic_tac_toe_vision: Qwen视觉模型检测棋盘状态
+        - tic_tac_toe_logic: 游戏逻辑和LLM策略生成
+        - tic_tac_toe_control: MoveIt!机械臂控制
+        - tic_tac_toe_main: 主控程序整合
+    </description>
+
+    <maintainer email="team13@example.com">Team13</maintainer>
+    <author>Team13</author>
+
+    <license>MIT</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+    
+    <build_depend>rospy</build_depend>
+    <build_depend>geometry_msgs</build_depend>
+    <build_depend>std_msgs</build_depend>
+    <build_depend>moveit_ros</build_depend>
+    <build_depend>message_generation</build_depend>
+
+    <exec_depend>rospy</exec_depend>
+    <exec_depend>geometry_msgs</exec_depend>
+    <exec_depend>std_msgs</exec_depend>
+    <exec_depend>moveit_ros</exec_depend>
+    <exec_depend>message_runtime</exec_depend>
+    <exec_depend>cv_bridge</exec_depend>
+    <exec_depend>image_transport</exec_depend>
+
+    <export>
+    </export>
+</package>

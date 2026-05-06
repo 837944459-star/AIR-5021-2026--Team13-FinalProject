@@ -1,0 +1,20 @@
+<launch>
+    <!--
+        棋盘位置标定工具启动文件
+        用于标定棋盘格子的物理位置
+
+        使用方法:
+        1. 启动机械臂: roslaunch sagittarius_moveit demo_true.launch
+        2. 启动标定工具: roslaunch tic_tac_toe calibrate_grid.launch
+        3. 手动拖动机械臂到每个格子，按提示输入坐标
+    -->
+
+    <node
+        name="calibrate_grid"
+        pkg="tic_tac_toe"
+        type="calibrate_grid.py"
+        output="screen"
+        required="false">
+    </node>
+
+</launch>

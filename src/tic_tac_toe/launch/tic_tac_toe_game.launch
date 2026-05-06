@@ -1,0 +1,37 @@
+<launch>
+    <!--
+        Tic-Tac-Toe 游戏启动文件
+        使用方法:
+        1. 首先启动机械臂: roslaunch sagittarius_moveit demo_true.launch
+        2. 然后启动摄像头节点（确保有图像发布）
+        3. 最后启动此文件: roslaunch tic_tac_toe tic_tac_toe_game.launch api_key:=你的API密钥
+
+        参数说明:
+        - api_key: Qwen API密钥
+        - image_topic: 摄像头图像话题（根据实际配置修改）
+        - manual_human_move: true=手动输入人类移动, false=视觉自动检测
+        - auto_capture: true=自动捕获图像分析
+    -->
+
+    <!-- 启动参数 -->
+    <arg name="api_key" default="sk-0d28ef95899448c0a3890fa07e0c2f2c" />
+    <arg name="image_topic" default="/usb_cam/image_raw" />
+    <arg name="manual_human_move" default="false" />
+    <arg name="auto_capture" default="true" />
+    <arg name="capture_save_dir" default="/tmp" />
+
+    <!-- 启动游戏主程序 -->
+    <node
+        name="tic_tac_toe_game"
+        pkg="tic_tac_toe"
+        type="tic_tac_toe_main.py"
+        output="screen"
+        required="false">
+        <param name="api_key" value="$(arg api_key)" />
+        <param name="image_topic" value="$(arg image_topic)" />
+        <param name="manual_human_move" value="$(arg manual_human_move)" />
+        <param name="auto_capture" value="$(arg auto_capture)" />
+        <param name="capture_save_dir" value="$(arg capture_save_dir)" />
+    </node>
+
+</launch>

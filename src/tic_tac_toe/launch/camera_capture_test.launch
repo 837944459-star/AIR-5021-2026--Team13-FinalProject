@@ -1,0 +1,23 @@
+<launch>
+    <!--
+        摄像头捕获测试启动文件
+        用于测试摄像头是否正常工作
+
+        使用方法:
+        roslaunch tic_tac_toe camera_capture_test.launch image_topic:=/usb_cam/image_raw
+    -->
+
+    <arg name="image_topic" default="/usb_cam/image_raw" />
+    <arg name="save_path" default="/tmp/test_capture.jpg" />
+
+    <node
+        name="camera_capture_test"
+        pkg="tic_tac_toe"
+        type="camera_capture.py"
+        output="screen"
+        required="false">
+        <param name="image_topic" value="$(arg image_topic)" />
+        <param name="save_path" value="$(arg save_path)" />
+    </node>
+
+</launch>

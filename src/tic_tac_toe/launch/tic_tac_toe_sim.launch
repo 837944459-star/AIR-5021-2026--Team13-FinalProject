@@ -1,0 +1,34 @@
+<launch>
+    <!--
+        Tic-Tac-Toe 仿真启动文件
+        在Gazebo仿真环境中运行
+
+        使用方法:
+        1. 启动Gazebo仿真: roslaunch sagittarius_gazebo demo_gazebo.launch
+        2. 然后启动此文件: roslaunch tic_tac_toe tic_tac_toe_sim.launch api_key:=你的API密钥
+    -->
+
+    <!-- 启动仿真环境下的机械臂MoveIt -->
+    <include file="$(find sagittarius_moveit)/launch/demo.launch" />
+
+    <!-- API密钥参数 -->
+    <arg name="api_key" default="" />
+    <arg name="test_image" default="/tmp/board.jpg" />
+    <arg name="manual_human_move" default="true" />
+
+    <!-- 等待MoveIt初始化 -->
+    <rosparam command="wait" ns="/move_group" />
+
+    <!-- 启动游戏主程序 -->
+    <node
+        name="tic_tac_toe_game"
+        pkg="tic_tac_toe"
+        type="tic_tac_toe_main.py"
+        output="screen"
+        required="false">
+        <param name="api_key" value="$(arg api_key)" />
+        <param name="test_image" value="$(arg test_image)" />
+        <param name="manual_human_move" value="$(arg manual_human_move)" />
+    </node>
+
+</launch>
